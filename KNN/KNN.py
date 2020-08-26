@@ -23,7 +23,7 @@ def classify(x, DB, labels, k):
 
     return sorted_count[0][0]
 
-def get_DB(path):
+def file2mat(path):
     # Read all dataset
     fr = open(path)
     lines = fr.readlines()
@@ -50,3 +50,14 @@ def scale(mat):
 
     return nmat, ranges, min_vals
 
+def img2vec(path):
+    # Convert image data to vector
+    rows, cols = 32, 32
+    vec = np.zeros((1, rows * cols))
+    fr = open(path)
+    for i in range(rows):
+        line = fr.readline()
+        for j in range(cols):
+            vec[0, i * cols + j] = int(line[j])
+
+    return vec
