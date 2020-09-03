@@ -2,12 +2,41 @@ import operator
 import numpy as np
 
 def create_dataset():
+    """
+    (function) create_dataset
+    -------------------------
+    Creating the dataset
+
+    Parameter
+    ---------
+    - None
+
+    Return
+    ------
+    - test dataset and labels
+    """
     # Create test dataset
     group = np.array([[1.0, 1.1], [1.0, 1.0], [0, 0], [0, 0.1]])
     labels = ['A', 'A', 'B', 'B']
     return group, labels
 
 def classify(x, DB, labels, k):
+    """
+    (function) classify
+    -------------------
+    Classify the input vector 'x'
+
+    Parameter
+    ---------
+    - x : input vector
+    - DB : database for KNN
+    - labels : labels for KNN
+    - k : hyperparameter K
+
+    Return
+    ------
+    - predicted label
+    """
     # Calculate euclidean distances
     size = DB.shape[0]
     diff = np.tile(x, (size, 1)) - DB
@@ -24,6 +53,19 @@ def classify(x, DB, labels, k):
     return sorted_count[0][0]
 
 def file2mat(path):
+    """
+    (function) file2mat
+    -------------------
+    Convert file to matrix
+
+    Parameter
+    ---------
+    - path : input file path
+
+    Return
+    ------
+    - converted matrix from the file
+    """
     # Read all dataset
     fr = open(path)
     lines = fr.readlines()
@@ -42,6 +84,19 @@ def file2mat(path):
     return mat, labels
 
 def scale(mat):
+    """
+    (function) scale
+    ----------------
+    Do scaling on the matrix
+
+    Parameter
+    ---------
+    - mat : input matrix
+
+    Return
+    ------
+    - scaled matrix
+    """
     # Do scaling on the matrix
     min_vals = mat.min(0)
     max_vals = mat.max(0)
@@ -51,6 +106,19 @@ def scale(mat):
     return nmat, ranges, min_vals
 
 def img2vec(path):
+    """
+    (function) img2vec
+    ------------------
+    Convert image to vector
+
+    Parameter
+    ---------
+    - path : input image path
+
+    Return
+    ------
+    - converted vector from the image
+    """
     # Convert image data to vector
     rows, cols = 32, 32
     vec = np.zeros((1, rows * cols))

@@ -1,7 +1,7 @@
 import os
 import numpy as np
 import matplotlib.pyplot as plt
-from KNN import KNN as knn
+from knn import knn
 
 def test_dating():
     # Do testing on the KNN
